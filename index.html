@@ -12,76 +12,9 @@
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+	 <link rel="stylesheet" href="mainstyle.css">
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
-
-
-	<style>
-		body { margin:0; padding:0; line-height:1.5em;}
-		
-		#map { position:absolute; top:0; bottom:0;  width:75%; }
-		
-		.info { width: 250px; height: 60px; padding: 16px 18px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } 
-		.info h4 { margin: 0 0 5px; color: #777; }
-		.legend { padding: 16px 18px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px;  text-align: left; line-height: 18px; color: #555; } 
-		.legend i { width: 18px; height: 18px; float: right; margin-right: 8px; opacity: 1;}
-
-		a.myButton:link { color:#fff; text-decoration:none; background-color: #800026; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-		a.myButton:visited { color: #fff; text-decoration:none; background-color: #800026; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-		a.myButton:active { color: #fff; text-decoration:none; background-color: #800026; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-
-
-		a.myGerman:link { color:#fff; text-decoration:none; background-color: #000; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-		a.myGerman:visited { color: #fff; text-decoration:none; background-color: #000; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-		a.myGerman:active { color: #fff; text-decoration:none; background-color: #000; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-
-		a.myHundred:link { color:#fff; text-decoration:none; background-color: #FC4E2A; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-		a.myHundred:visited { color: #fff; text-decoration:none; background-color: #FC4E2A; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-		a.myHundred:active { color: #fff; text-decoration:none; background-color: #FC4E2A; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-
-		a.myFifty:link { color:#fff; text-decoration:none; background-color: #FD8D3C; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-		a.myFifty:visited { color: #fff; text-decoration:none; background-color: #FD8D3C; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-		a.myFifty:active { color: #fff; text-decoration:none; background-color: #FD8D3C; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
-
-	</style>
-	
-	<style>
-article {
-  position:absolute;
-  top:0;
-  right:0;
-  bottom:0px;
-  left:0;
-  overflow:auto;
-  margin-left:75%;
-    }
-.quiet {
-  color:rgba(0,0,0,0.5);
-  }
-.scroll {
-  display:block;
-  text-align:center;
-  }
-.sections {
-  background:rgba(255,255,255,0.5);
-  
-  }
-section {
-padding:  10px 20px;
-border-bottom: 1px solid #ddd;
-opacity: 0.25;
-font-size: 15px;
-}
-section.active {
-opacity: 1;
-}
-section:last-child {
-border-bottom: none;
-margin-bottom: 200px;
-}
-</style>
-
-
-</head>
+	</head>
 <body>
 
 <div id='map'></div>
