@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Reciclatge en Europa</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+
+
+	<style>
+		body { margin:0; padding:0; line-height:1.5em;}
+		
+		#map { position:absolute; top:0; bottom:0;  width:75%; }
+		
+		.info { width: 250px; height: 60px; padding: 16px 18px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } 
+		.info h4 { margin: 0 0 5px; color: #777; }
+		.legend { padding: 16px 18px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px;  text-align: left; line-height: 18px; color: #555; } 
+		.legend i { width: 18px; height: 18px; float: right; margin-right: 8px; opacity: 1;}
+
+		a.myButton:link { color:#fff; text-decoration:none; background-color: #800026; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+		a.myButton:visited { color: #fff; text-decoration:none; background-color: #800026; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+		a.myButton:active { color: #fff; text-decoration:none; background-color: #800026; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+
+
+		a.myGerman:link { color:#fff; text-decoration:none; background-color: #000; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+		a.myGerman:visited { color: #fff; text-decoration:none; background-color: #000; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+		a.myGerman:active { color: #fff; text-decoration:none; background-color: #000; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+
+		a.myHundred:link { color:#fff; text-decoration:none; background-color: #FC4E2A; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+		a.myHundred:visited { color: #fff; text-decoration:none; background-color: #FC4E2A; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+		a.myHundred:active { color: #fff; text-decoration:none; background-color: #FC4E2A; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+
+		a.myFifty:link { color:#fff; text-decoration:none; background-color: #FD8D3C; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+		a.myFifty:visited { color: #fff; text-decoration:none; background-color: #FD8D3C; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+		a.myFifty:active { color: #fff; text-decoration:none; background-color: #FD8D3C; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px;}
+
+	</style>
+	
+	<style>
+article {
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0px;
+  left:0;
+  overflow:auto;
+  margin-left:75%;
+    }
+.quiet {
+  color:rgba(0,0,0,0.5);
+  }
+.scroll {
+  display:block;
+  text-align:center;
+  }
+.sections {
+  background:rgba(255,255,255,0.5);
+  
+  }
+section {
+padding:  10px 20px;
+border-bottom: 1px solid #ddd;
+opacity: 0.25;
+font-size: 15px;
+}
+section.active {
+opacity: 1;
+}
+section:last-child {
+border-bottom: none;
+margin-bottom: 200px;
+}
+</style>
+
+
+</head>
+<body>
+
+<div id='map'></div>
+
+
+
+<article id='narrative'>
+  <div class='sections prose'>
+    <section id='cover' class='cover active'>
+      <h2>Reciclatge de plàstics a Europa</h2>
+	  
+	  
+	  <p>Cada any els europeus generen 25 milions de tones de residus de plàstic, però només se’n recicla el 30 %. El plàstic representa el 85 % de les deixalles que arriben a les platges d’arreu del món. El plàstic se’ns està ficant fins i tot a taula i als pulmons. I, a més, no coneixem gens l’impacte que poden tenir en la nostra salut els microplàstics presents en l’aire, l’aigua i els aliments. La nova estratègia europea en matèria de gestió dels plàstics, que es basa en diversos estudis de la Comissió Europea, es prendrà aquesta qüestió molt seriosament.  </p>
+	  <p>Aquest mapa mostra el percentatge de plàstics de reciclats en els països europeus per cada any. Les dades del mapa provenen de 'Reciclatge i residus de plàstic a la UE: fets i xifres' del Parlament Europeu.
+	  </p>Els colors del mapa indiquen el percentatge a cada país europeu. Si col·loca el cursor sobre països individuals al mapa, pots veure el percentatge de plàstics reciclats al país seleccionat.
+	 <p><small class='scroll quiet'>Scroll &#x25BE;</small>
+	 </p>
+	  <p><br><br> <br><br> 	  </p>
+      
+    </section>
+	<section id='cover'>
+      <h3>Eastern Europe</h3>
+      <p>El reciclatge de plàstics a Europa està canviant dràsticament: els requisits de reciclatge són cada vegada més grans i els consumidors pressionen cada vegada més a el comerç i la indústria perquè gestionin els plàstics de manera responsable.
+
+En aquest context, la UE també ha endurit les regulacions legals. Per als envasos de plàstic, per exemple, la quota de reciclatge obligatòria a la UE augmentarà a l'55% per 2030. Simultàniament, s'aplicarà un mètode de càlcul diferent per a determinar les quotes de reciclatge a la UE, el que significa que la quota de reciclatge actual gairebé s'ha de duplicar. A més, en el futur, gairebé tot el reciclatge s'ha de fer dins de la UE. A l'assumir quantitats de consum estables, això significaria que el plàstic reciclat produït a la UE hauria d'augmentar d'aproximadament 5 a gairebé 11 milions de tones per any.
+
+Fins i tot aquest enorme creixement projectat podria ser massa baix, ja que no hi ha indicis d'assumir quantitats de consum estables: en el passat, sempre han augmentat. Les raons tradicionals per l'ús cada vegada més gran de plàstics, per exemple en els embalatges, radiquen en una població en augment, un consum creixent i el nombre creixent de llars unipersonals. Aquestes tendències continuaran. "A més, el sector dels plàstics és un camp altament innovador amb desenvolupaments més ràpids que altres materials naturals", diu Mark doing, Gerent General de ecoprog GmbH. "Un creixement addicional en l'ús de plàstics es desencadenarà pel creixement de la mobilitat elèctrica, en el qual s'utilitzarà una gran proporció de plàstics per minimitzar el pes dels vehicles".</p>
+	</section>
+    <section id='ukraine'>
+      <h3>Ukraine</h3>
+      <p>Els ucraïnesos han desenvolupat una planta de reciclatge de residus flotant per netejar l'oceà. El grup creatiu NiceCube de Mykolaiv, a sol·licitud d'Ocean Polymers, ha desenvolupat un projecte innovador únic per a la ubicació d'una planta de reciclatge de residus a bord del vaixell ", es diu en un comunicat. Com s'assenyala, sobre l'antiga nau com base, s'ubica una instal·lació de plasma per a la piròlisi de substàncies orgàniques i inorgàniques per tal de realitzar la purificació intensiva de les aigües marítimes de les deixalles de la superfície.
+
+Tals naus podran navegar per oceans, rius i fins i tot llacs. El lloc web de "Clear our ocean" ens diu que el plàstic i altres residus al vaixell es recolliran, s'assecaran i es moldran, i després es catalitzen en gas sintètic pur utilitzat com a combustible de l'vaixell.
+
+Com va informar Ukrinform, a l'oceà troben anualment al voltant de vuit milions de tones de plàstic. A el mateix temps, segons els científics, la contaminació dels oceans de món amb plàstics li costa anualment a la societat 2.500 milions de dòlars en forma de danys a l'entorn i la pèrdua de recursos.</p>
+	</section>
+    <section id='london-bridge'>
+      <h3>France</h3>
+      <p>L'Assemblea Nacional francesa va adoptar recentment un projecte de llei contra el malbaratament i per una economia circular particularment combatiu contra el plàstic amb objectius per suprimir els embalatges d'ús únic.
+
+El text es fixa una sèrie d'objectius xifrats, entre els quals destaca la reducció de l'50% de la comercialització d'embalatges plàstics d'un sol ús per a 2030 i d'un 50% suplementari per 2040.
+
+També estableix la meta que l'1 de gener de 2025, tot el plàstic ha de ser reciclat, i la de disminuir d'aquí a 2030 la venda d'ampolles de plàstic d'ús únic.
+
+Els restaurants de menjar ràpid a França hauran d'eliminar per a gener de 2023 els plàstics d'ús únic i no podran donar joguines de plàstic als nens.
+
+MULTES A les MALES PRÀCTIQUES
+El text legal recull també que els grups de distribució no podran destruir els productes alimentaris que no hagin venut, sota pena de multes de 10.000 euros.
+
+D'altra banda, abandonar escombraries a llocs no autoritzats estarà castigat amb una multa de 1.500 euros.
+
+El dispositiu legislatiu contempla noves obligacions per al reciclatge, a partir de 2022, de diversos productes com els materials de construcció, les joguines, els articles esportius, de bricolatge o de jardineria.
+      </p>
+    </section>
+    <section id='woolwich'>
+      <h3>UK</h3>
+      <p>El Govern del Regne Unit va anunciar un programa de devolució d'ampolles de plàstic i llaunes de beguda per impulsar el reciclatge. Els consumidors pagaran un impost de 22 penics per cada ampolla o llauna adquirida, els quals seran reemborsats a l'retornar aquests envasos.
+
+La mesura, que encara està subjecta a consulta, és una gran victòria per als defensors de l'entorn que van pressionar a govern perquè actuï arran de l'exposició de l'informe realitzat per Future of the Sea. En aquest sentit, el Govern britànic va revelar que "la quantitat de deixalles plàstics en l'oceà es triplicarà en una dècada, llevat que es prenguin mesures urgents".
+
+I és que, aquest informe revelava que "els consumidors del Regne Unit utilitzen un estimat de 13.000 milions d'ampolles de plàstic a l'any, però més de 3.000 milions són incinerats, enviats a abocadors o acaben com escombraries a les ciutats, el camp i els mars ".
+
+El secretari de medi ambient, Michael Gove, va anunciar els plans per reduir les deixalles de plàstic explicant que "no tenim cap dubte que el plàstic està causant estralls en el nostre medi marí matant dofins, escanyant a les tortugues i degradant els nostres hàbitats més preuats. És absolutament vital que actuem ara per enfrontar aquesta amenaça i frenar els milions d'ampolles de plàstic a el dia que no es reciclen ».
+Aquesta proposta es realitza després que el Govern britànic prohibís la fabricació de productes que incloguessin les nocives microperles de plàstic. La majoria de productes que contenen aquests microplásticos són els cosmètics i productes de cura personal, com la pasta de dents, gels de dutxa o exfoliants </p>
+    </section>
+    <section id='gloucester'>
+      <h3>Credits</h3>
+      
+  <p> Les dades de Reciclatge de plàstics a Europa han sortit de <a href="https://ec.europa.eu/spain/barcelona/news/press_releases/180116_ca">aquesta pàgina</a>. <br><br>
+  
+   Les dades dels Percentatges de Reciclatge de plàstics a Europa han sortit de <a href="https://www.europarl.europa.eu/news/es/headlines/society/20181212STO21610/reciclaje-y-residuos-de-plastico-en-la-ue-hechos-y-cifras">aquesta pàgina</a>. <br><br>
+    	
+	Les dades de ucrania han sortit de <a href="https://www.ukrinform.es/rubric-economy/2699807-los-ucranianos-han-desarrollado-una-planta-de-reciclaje-de-residuos-flotante-para-limpiar-el-oceano-fotos.html">aquesta pàgina</a>. <br><br>
+	Les dades de Francia han sortit de <a href="https://www.residuosprofesional.com/francia-exigira-reciclaje-plasticos/">aquesta pàgina</a>. <br><br>
+	
+	Les dades de UK han sortit de <a href="https://www.eliberico.com/el-gobierno-de-reino-unido-impulsa-el-reciclaje-con-un-sistema-de-devolucion-de-botellas-y-latas/">aquesta pàgina</a>.
+	
+	</p>
+    </section>
+  	<section id='blank'>
+     <br><br><br><br><br><br>
+	</section>
+  </div>
+</article>
+vb 
+
+<script type="text/javascript" src="countries.js"></script>
+
+<script type="text/javascript">
+
+	
+	var map = L.map('map', '', {
+    mousewheel: false
+    });
+
+
+	L.tileLayer(
+  "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}@2x.png" // stamen toner tiles
+).addTo(map);
+
+map.scrollWheelZoom.disable();
+
+
+	// control that shows state info on hover
+	var info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (props) {
+		this._div.innerHTML = '<h4>% de plàstics reciclats en un any</h4>' +  (props ?
+			'<b>' + props.name + '</b><br />' + props.measlesrate + ' de residus de plàstics reciclats al any'
+			: 'Coloca el cursor sobre un país');
+	};
+
+	info.addTo(map);
+
+
+	// get color depending on population density value
+	function getColor(d) {
+		return d > 70  ? '#003300' :
+				d > 60  ? '#006600' :
+				d > 50   ? '#009900' :
+				d > 40   ? '#00CC00' :
+				d > 30   ? '#00FF00' :
+				d < 30   ? '#66FF66' :
+                           '#66FF66';
+	}
+	
+	
+	
+
+	function style(feature) {
+		return {
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			dashArray: '3',
+			fillOpacity: 0.7,
+			fillColor: getColor(feature.properties.measlesrate)
+		};
+	}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+
+	geojson = L.geoJson(countriesData, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).addTo(map);
+
+	map.attributionControl.addAttribution('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Measles data &copy; <a href="https://www.who.int/immunization/monitoring_surveillance/burden/vpd/surveillance_type/active/measles_monthlydata/en/">World Health Organization</a>');
+
+
+	var legend = L.control({position: 'bottomright'});
+
+	legend.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'legend'),
+			grades = [0, 30, 40, 50, 60, 70],
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + getColor(from + 1) + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+	};
+
+	legend.addTo(map);
+	
+	//storymap
+	
+	var places = { type: 'FeatureCollection', features: [
+{ geometry: { type: "Point", coordinates: [13.12960000, 52.50110000] },
+  properties: { id: "cover", zoom: 4 }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [31.15591514, 48.51830379] },
+  properties: { id: "ukraine", zoom: 6 }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [22.07571203, 47.51424049] },
+  properties: { id: "aldgate", zoom: 6 }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [3, 47] },
+  properties: { id: "london-bridge", zoom: 6 }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.5, 54] },
+  properties: { id: "woolwich", zoom:6 }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [13.12960000, 52.50110000] },
+  properties: { id: "gloucester", zoom: 4 }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.19684993, 51.5033856] },
+  properties: { id: "caulfield-gardens" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.10669358, 51.51433123] },
+  properties: { id: "telegraph" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.12416858, 51.50779757] },
+  properties: { id: "charing-cross" }, type: 'Feature' }
+]};
+
+
+
+
+var placesLayer = L.geoJson(places).addTo(map);
+
+//set opacity of markers to 0
+placesLayer.eachLayer(function(layer) {
+    layer.setOpacity(0);
+});
+
+
+//goodtohere
+
+// Ahead of time, select the elements we'll need -
+// the narrative container and the individual sections
+var narrative = document.getElementById('narrative'),
+    sections = narrative.getElementsByTagName('section'),
+    currentId = '';
+
+setId('cover');
+
+function setId(newId) {
+    // If the ID hasn't actually changed, don't do anything
+    if (newId === currentId) return;
+    // Otherwise, iterate through layers, setting the current
+    // marker to a different color and zooming to it.
+    placesLayer.eachLayer(function(layer) {
+        if (layer.feature.properties.id === newId) {
+            map.setView(layer.getLatLng(), layer.feature.properties.zoom || 14);   
+            
+        } else {
+            
+        }
+    });
+    // highlight the current section
+    for (var i = 0; i < sections.length; i++) {
+        sections[i].className = sections[i].id === newId ? 'active' : '';
+    }
+    // And then set the new id as the current one,
+    // so that we know to do nothing at the beginning
+    // of this function if it hasn't changed between calls
+    currentId = newId;
+}
+
+// If you were to do this for real, you would want to use
+// something like underscore's _.debounce function to prevent this
+// call from firing constantly.
+narrative.onscroll = function(e) {
+    var narrativeHeight = narrative.offsetHeight;
+    var newId = currentId;
+    // Find the section that's currently scrolled-to.
+    // We iterate backwards here so that we find the topmost one.
+    for (var i = sections.length - 1; i >= 0; i--) {
+        var rect = sections[i].getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= narrativeHeight) {
+            newId = sections[i].id;
+        }
+    };
+    setId(newId);
+};
+
+
+
+function newStyle(){
+	 geojson.eachLayer(function (layer) {  
+  if(layer.feature.properties.name == 'Ukraine') {    
+    layer.setStyle({weight: 5,
+			color: '#666',
+			dashArray: '',}) 
+  }
+});
+    }
+function oldStyle(){
+	 geojson.eachLayer(function (layer) {  
+  if(layer.feature.properties.name == 'Ukraine') {    
+    layer.setStyle({weight: 2,
+			
+			color: 'white',
+			dashArray: '3',}) 
+  }
+});
+    }
+	
+function germannewStyle(){
+	 geojson.eachLayer(function (layer) {  
+  if(layer.feature.properties.name == 'Germany') {    
+    layer.setStyle({weight: 5,
+			color: '#666',
+			dashArray: '',}) 
+  }
+});
+    }
+function germanoldStyle(){
+	 geojson.eachLayer(function (layer) {  
+  if(layer.feature.properties.name == 'Germany') {    
+    layer.setStyle({weight: 2,
+			color: 'white',
+			dashArray: '3',}) 
+  }
+});
+    }	
+	
+function kosovonewStyle(){
+	 geojson.eachLayer(function (layer) {  
+  if(layer.feature.properties.name == 'Kosovo') {    
+    layer.setStyle({weight: 5,
+			color: '#666',
+			dashArray: '',}) 
+  }
+});
+    }
+function kosovooldStyle(){
+	 geojson.eachLayer(function (layer) {  
+  if(layer.feature.properties.name == 'Kosovo') {    
+    layer.setStyle({weight: 2,
+			color: 'white',
+			dashArray: '3',}) 
+  }
+});
+    }	
+	
+function overHundred(){
+ geojson.eachLayer(function (layer) {  
+   if(layer.feature.properties.name != 'Ukraine' && layer.feature.properties.name != 'Serbia' && layer.feature.properties.name != 'Slovakia' && layer.feature.properties.name != 'Albania' && layer.feature.properties.name != 'Montenegro' && layer.feature.properties.name != 'Greece') {    
+    layer.setStyle({fillOpacity: 0, opacity: 0}) 
+  }
+ 
+});
+
+   }
+   
+ function overHundredout(){
+ geojson.eachLayer(function (layer) {  
+ 
+  if(layer.feature.properties.name != 'Ukraine') {    
+    layer.setStyle({fillOpacity: 0.7, opacity: 1}) 
+  }
+
+});
+
+   }  
+   
+ function overFifty(){
+ geojson.eachLayer(function (layer) {  
+   if(layer.feature.properties.name != 'Ukraine' && layer.feature.properties.name != 'Serbia' && layer.feature.properties.name != 'Slovakia' && layer.feature.properties.name != 'Albania' && layer.feature.properties.name != 'Montenegro' && layer.feature.properties.name != 'Greece' && layer.feature.properties.name != 'Romania' && layer.feature.properties.name != 'Moldova') {    
+    layer.setStyle({fillOpacity: 0, opacity: 0}) 
+  }
+ 
+});
+
+   }
+   
+ function overFiftyout(){
+ geojson.eachLayer(function (layer) {  
+ 
+  if(layer.feature.properties.name != 'Ukraine') {    
+    layer.setStyle({fillOpacity: 0.7, opacity: 1}) 
+  }
+
+});
+
+   }  
+  
+	
+
+</script>
+
+
+
+</body>
+</html>
+
